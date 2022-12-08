@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+.Button-css {
+  background-color: rgb(185, 232, 185);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.Button-inner-css {
+  background-color: rgb(10, 110, 10);
+  min-height: 20vh;
+  box-shadow: 10px 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(50px + 2vmin);
+}
