@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# word-frequency-counter
+# Word Frequency Counter
 A react app to count frequency of words from an API and display the frequency of top 20 words as a histogram.
 =======
 # Getting Started with Create React App
