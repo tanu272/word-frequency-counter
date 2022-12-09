@@ -4,8 +4,8 @@ import Button from '@mui/material/Button';
 import KeyboardArrowUpSharpIcon from '@mui/icons-material/KeyboardArrowUpSharp';
 import {useState} from 'react';
 import axios from 'axios';
-import Chart from 'react-google-charts'
-import { keyboard } from '@testing-library/user-event/dist/keyboard';
+import Chart from "chart.js/auto";
+import { Bar } from "react-chartjs-2";
 
 export default function Button1() {  
     const [data, setData] = useState({data: []});
@@ -14,7 +14,8 @@ export default function Button1() {
     const [freq, setFreq] = useState([]);
 
     const parsestring = (text) => {
-      var words = text.replace(/[?]|[.]|[,]|[(]|[)]|[/]|[']|[–]/g, '').split(/\s/);
+      var words = text.replace(/[?]|[.]|[,]|[(]|[)]|[/]|[–]|[:]|[;]|[<]|[>]|[@]/g, ' ');
+      words = (String(words)).split(/\s/);
       var freqMap = {};
       words.forEach(function(w) {
           if (!freqMap[w] && w!='') {
@@ -46,33 +47,69 @@ export default function Button1() {
           setIsLoading(false);
       }
     };
-
+    
     console.log(data);
     console.log(freq);
-    console.log(Object.keys(freq));
+    //console.log(Object.keys(freq));
+    let sortable = [];
+    for (var word in freq) {
+        sortable.push([word, freq[word]]);
+    }
 
+    sortable.sort(function(a, b) {
+        return a[1] - b[1];
+    });
+    sortable.reverse();
+    //console.log(sortable);
+    var col1 = sortable.map(function(value,index) { return value[0]; }).slice(0,20);
+    var col2 = sortable.map(function(value,index) { return value[1]; }).slice(0,20);
+  
+    const datachart = {
+      labels: col1,
+      datasets: [
+        {
+          label: "Word Frequency",
+          backgroundColor: "rgb(255, 99, 132)",
+          borderColor: "rgb(255, 99, 132)",
+          data: col2,
+        },
+      ],
+    };
+
+    const optionset = {
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: 'Frequency'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Words'
+            }
+          },
+        }     
+      }
 
     return (  
       <div >
+        <div className="Button-css">
           {err && <h2>{err}</h2>}
           <Button onClick={getData} 
-          variant="contained" color="success" startIcon={<KeyboardArrowUpSharpIcon />}>
+          variant="contained" color="success" endIcon={<KeyboardArrowUpSharpIcon />}>
               Submit
           </Button> 
           {isLoading && <h5>Loading...</h5>}
+          </div>
           
+          {Object.keys(freq).length!=0 && <div className="Histogram"><Bar data={datachart} options ={optionset}/></div>}
           
-          {Object.keys(freq).map((words, count) => {
-            return (
-              <div>
-                <h2>
-                  {words}: {freq[words]}
-                </h2> 
-                <hr />
-              </div>
-            );
-          })} 
-          
+          <div >
+            
+          </div>
+
       </div> 
     );  
 }  
