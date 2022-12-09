@@ -81,13 +81,13 @@ export default function Button1() {
           y: {
             title: {
               display: true,
-              text: 'Frequency'
+              text: 'Frequency --->'
             }
           },
           x: {
             title: {
               display: true,
-              text: 'Words'
+              text: 'Words --->'
             }
           },
         }     
