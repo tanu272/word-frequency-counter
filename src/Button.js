@@ -61,17 +61,17 @@ export default function Button1() {
     });
     sortable.reverse();
     //console.log(sortable);
-    var col1 = sortable.map(function(value,index) { return value[0]; }).slice(0,20);
-    var col2 = sortable.map(function(value,index) { return value[1]; }).slice(0,20);
+    var wordsIndex = sortable.map(function(value,index) { return value[0]; }).slice(0,20);
+    var wordcount = sortable.map(function(value,index) { return value[1]; }).slice(0,20);
   
     const datachart = {
-      labels: col1,
+      labels: wordsIndex,
       datasets: [
         {
           label: "Word Frequency",
           backgroundColor: "rgb(255, 99, 132)",
-          borderColor: "rgb(255, 99, 132)",
-          data: col2,
+          borderColor: "rgb(255, 51, 51)",
+          data: wordcount,
         },
       ],
     };
@@ -102,13 +102,13 @@ export default function Button1() {
               Submit
           </Button> 
           {isLoading && <h5>Loading...</h5>}
-          </div>
+        </div>
           
-          {Object.keys(freq).length!=0 && <div className="Histogram"><Bar data={datachart} options ={optionset}/></div>}
-          
-          <div >
-            
+        {Object.keys(freq).length!=0 && 
+          <div className="Histogram">
+            <Bar data={datachart} options ={optionset}/>
           </div>
+        }
 
       </div> 
     );  
