@@ -28,19 +28,19 @@ Clone down this repository. You will need `node.js` and `git` installed globally
 
 ## 🛠 Installation and Setup Instructions
 
-1. Installation: Run `npm install` to install all dependencies
+1. Installation: `npm install`
 
 2. In the project directory, you can run: `npm start`
 
-Runs the app in the development mode.
+Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.
 
 ## Understanding The Code
 
 <div>
-This is a Javascript application built using React library. The main logic is located inside <b>src/Button.js</b>. On button click, a function <b>getData</b> is evoked, which uses axios client to fetch data from the given API (in this case <a href="https://www.terriblytinytales.com/test.txt">https://www.terriblytinytales.com/test.txt</a>). If data cannot be fetched, the function returns an error message, otherwise it gives a call to another function <b>parsestring</b> that parses the given data and counts the frequency of all words in the data. These words along with their frequencies are stored in a state variable. 
-<br/>
-Next, we sort the object(by converting it into an array) and get first 20 elements from the array. We use <b>Chart.js</b> library to use this data and display it in the form of a column chart where X-axis contains the top 20 most-occuring words and Y-axis contains respective frequencies of these words.
+This is a Javascript application built using React library. The main logic is located inside `src/Button.js`. On button click, a function `getData` is evoked, which uses axios client to fetch data from the given API (in this case `https://www.terriblytinytales.com/test.txt`). If data cannot be fetched, the function returns an error message, otherwise it gives a call to another function `parsestring` that parses the given data and counts the frequency of all words in the data. These words along with their frequencies are stored in a state variable. 
+
+Next, we sort the object(by converting it into an array) and get first 20 elements from the array. We use Chart.js library to use this data and display it in the form of a column chart where X-axis contains the top 20 most-occuring words and Y-axis contains respective frequencies of these words.
 </div>
 <hr/>
